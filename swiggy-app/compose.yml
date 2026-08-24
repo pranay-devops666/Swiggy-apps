@@ -2,25 +2,25 @@
 version: "3"
 services:
   dineout:
-    container_name: dineout-contt
+    container_name: dineout-container
     build: ./dineout
     ports:
-      - "1111:80"
+      - "1122:80"
 
   food-delivery:
-    container_name: food-deliver-contt
+    container_name: food-deliver-container
     build: ./food-delivery
     ports:
-      - "2222:80"
+      - "2233:80"
 
   genie:
-    container_name: genie-contt
+    container_name: genie-container
     build: ./genie
     ports:
-      - "3333:80"
+      - "3344:80"
 
   instamart:
-    container_name: instamart-contt
+    container_name: instamart-container
     build: ./instamart
     ports:
-      - "4444:80"
+      - "4455:80"
