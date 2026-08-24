@@ -2,25 +2,65 @@
 version: "3"
 services:
   dineout:
-    container_name: dineout-container
-    build: ./dineout
+    container_name: dineout-con
+    build: ./dineout/
+    image: dineout-img
     ports:
-      - "1122:80"
+      - "1001:80"
+    volumes:
+      - dineoutvolume:/usr/share/nginx/html/
+    networks:
+      - dineoutnetwork
+      - food-deliverynetwork
 
   food-delivery:
-    container_name: food-deliver-container
-    build: ./food-delivery
+    container_name: food-delivery-con
+    build: ./food-delivery/
+    image: food-delivery-img
     ports:
-      - "2233:80"
-
+      - "2002:80"
+    volumes:
+      - food-deliveryvolume:/usr/share/nginx/html/
+    networks:
+      - food-deliverynetwork
+      - dineoutnetwork
+  
   genie:
-    container_name: genie-container
-    build: ./genie
+    container_name: genie-con
+    build: ./genie/
+    image: genie-img
     ports:
-      - "3344:80"
+      - "3003:80"
+    volumes:
+      - genievolume:/usr/share/nginx/html/
+    networks:
+      - genienetwork
+      - instamartnetwork
 
   instamart:
-    container_name: instamart-container
-    build: ./instamart
+    container_name: instamart-con
+    build: ./instamart/
+    image: instamart-img
     ports:
-      - "4455:80"
+      - "4004:80"
+    volumes:
+      - instamartvolume:/usr/share/nginx/html/
+    networks:
+      - instamartnetwork
+      - genienetwork
+
+volumes:
+  dineoutvolume:
+  food-deliveryvolume:
+  genievolume:
+  instamartvolume:
+
+networks:
+  dineoutnetwork:
+    driver: bridge
+  food-deliverynetwork:
+    driver: bridge
+  genienetwork:
+    driver: bridge
+  instamartnetwork:
+    driver: bridge
